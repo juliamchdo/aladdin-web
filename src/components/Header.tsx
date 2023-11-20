@@ -13,7 +13,7 @@ export function Header() {
   ]
 
   return (
-    <div className="header-container header flex items-center justify-between py-8">
+    <div className="header-container header w-screen flex items-center justify-between py-8 pr-6 pl-6">
       
       <img className="logo" src={logo} alt="logo" />
 

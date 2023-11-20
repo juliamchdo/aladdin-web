@@ -9,7 +9,7 @@ function App() {
   return (
     
     <div className='w-screen h-screen'>
-      <div >
+      <div className="w-full flex flex-col gap-16">
         <Header/>
         <Home/>
       </div>

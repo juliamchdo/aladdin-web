@@ -1,0 +1,36 @@
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    width: 25%;
+    margin: 0 auto;
+}
+.form-group{
+    height: auto;
+    align-items: center;
+    gap: 1rem;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.form-label{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.form-input{
+    width: 20rem;
+    border: 1px solid #6C6C6C;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+
+@media screen and (max-width: 639px) {
+    .form-group{
+        flex-direction: column;
+        align-items: center;
+    }
+}
