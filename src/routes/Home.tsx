@@ -17,10 +17,17 @@ export function Home() {
     <div className="flex justify-center items-center">
       <div className="flex flex-col justify-center items-center mb-10 w-3/4">
         <NewTask />
-        {openTask.length > 0 &&
-          openTask.map((task) => {
-            return <Card task={task} key={task.id} />;
-          })}
+        {openTask.length > 0 && (
+          <div>
+            <h2 className="card-title">Tarefas do dia</h2>
+            {openTask.map((task) => {
+              return <Card task={task} key={task.id} isTodayTask={true} isCompleted={false}/>;
+            })}
+          </div>
+        )}
+        {openTask.length === 0 &&
+        <h2 className="card-title">Não há tarefas para hoje</h2>
+        }
       </div>
     </div>
   );
