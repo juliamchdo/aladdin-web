@@ -1,15 +1,16 @@
 import "../styles/header.css"
 import logo from "../assets/logo.svg"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Header() {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const navOptions = [
-    {id: 1, title: "Home", active: true},
-    {id: 2, title: "Em aberto", active: false},
-    {id: 3, title: "Finalizados", active: false},
+    {id: 1, title: "Home", active: true, link: "/"},
+    {id: 2, title: "Em aberto", active: false, link: "/aberto"},
+    {id: 3, title: "Finalizados", active: false, link: "/finalizados"},
   ]
 
   return (
@@ -47,35 +48,35 @@ export function Header() {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </div>
-            <ul className="flex flex-col items-center justify-between min-h-[250px]">
+            <div className="flex flex-col items-center justify-between min-h-[250px]">
 
               {
                 navOptions.map(option => {
                   return (
-                    <li key={option.id} className="my-8 uppercase">
-                      <a className="header-item" href="/about">{option.title}</a>
-                    </li>
+                    <Link to={option.link} key={option.id} className="my-8 uppercase header-item">
+                      {option.title}
+                    </Link>
                   )
                 })
               }
 
-            </ul>
+            </div>
           </div>
         </section>
 
         {/* desktop menu */}
-        <ul className="header-item hidden space-x-8 lg:flex">
+        <div className="header-item hidden space-x-8 lg:flex">
 
           {
             navOptions.map(option => {
               return (
-                <li key={option.id}>
-                  <a href="/about">{option.title}</a>
-                </li>
+                <Link to={option.link} key={option.id}>
+                  {option.title}
+                </Link>
               )
             })
           }
-        </ul>
+        </div>
       </nav>
     </div>
   )

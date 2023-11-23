@@ -4,8 +4,15 @@ import { api } from "../lib/axios";
 import { isEmpty } from "../utils/EmptyNullUndefined";
 import "../styles/new-task.css";
 import * as Label from "@radix-ui/react-label";
+import { Task } from "../types/task";
+import dayjs from "dayjs";
 
-export function NewTask() {
+type TaskProps = {
+  openTask: Task,
+  setOpenTask: React.Dispatch<React.SetStateAction<Task>>
+}
+
+export function NewTask({openTask, setOpenTask} : TaskProps) {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
 
@@ -27,8 +34,12 @@ export function NewTask() {
           title: task,
           deadline: date,
         })
-        .then(() => {
+        .then((response) => {
           window.alert("Tarefa cadastrada com sucesso!");
+          const today = dayjs().startOf('day').toDate();
+          console.log(today)
+          // console.log(response.data)
+          // setOpenTask(response.data)
         });
     }
   }

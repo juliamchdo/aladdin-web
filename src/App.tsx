@@ -1,6 +1,6 @@
 import './App.css'
 import { Header } from './components/Header'
-import { Home } from './screens/Home'
+import { Outlet } from 'react-router-dom'
 import './styles/global.css'
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <div className='w-screen h-screen'>
       <div className="w-full flex flex-col gap-16">
         <Header/>
-        <Home/>
+        <Outlet/>
       </div>
     </div>
     
