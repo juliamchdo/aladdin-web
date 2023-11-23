@@ -4,15 +4,9 @@ import { api } from "../lib/axios";
 import { isEmpty } from "../utils/EmptyNullUndefined";
 import "../styles/new-task.css";
 import * as Label from "@radix-ui/react-label";
-import { Task } from "../types/task";
-import dayjs from "dayjs";
 
-type TaskProps = {
-  openTask: Task,
-  setOpenTask: React.Dispatch<React.SetStateAction<Task>>
-}
 
-export function NewTask({openTask, setOpenTask} : TaskProps) {
+export function NewTask() {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
 
@@ -34,19 +28,15 @@ export function NewTask({openTask, setOpenTask} : TaskProps) {
           title: task,
           deadline: date,
         })
-        .then((response) => {
+        .then(() => {
           window.alert("Tarefa cadastrada com sucesso!");
-          const today = dayjs().startOf('day').toDate();
-          console.log(today)
-          // console.log(response.data)
-          // setOpenTask(response.data)
         });
     }
   }
 
   return (
     <form className="form">
-      <div className="form-group w-screen flex sm:justify-center">
+      <div className="form-group w-screen flex sm:justify-center m-10">
         <div className="form-container">
           <Label.Root className="form-label" htmlFor="task-name">
             Tarefa
