@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { api } from "../lib/axios";
 import { NewTask } from "../components/NewTask";
 import { Card } from "../components/Card";
 import { Task } from "../types/task";
+import { EmptyTask } from "../components/EmptyTask";
 
 export function Home() {
   const [openTask, setOpenTask] = useState<Task[]>([]);
+  const emptyMessage = "Não há tarefas para o dia de hoje"
 
   useEffect(() => {
-    api.get("open").then((response) => {
+    api.get("today").then((response) => {
       setOpenTask(response.data);
     });
-  }, []);
+  }, [openTask]);
 
   return (
     <div className="flex justify-center items-center">
@@ -21,13 +23,19 @@ export function Home() {
           <div>
             <h2 className="card-title">Tarefas do dia</h2>
             {openTask.map((task) => {
-              return <Card task={task} key={task.id} isTodayTask={true} isCompleted={false}/>;
+              return (
+                <Card
+                  task={task}
+                  key={task.id}
+                  isTodayTask={true}
+                  isCompleted={false}
+                  color="bg-today"
+                />
+              );
             })}
           </div>
         )}
-        {openTask.length === 0 &&
-        <h2 className="card-title">Não há tarefas para hoje</h2>
-        }
+        {openTask.length === 0 && <EmptyTask msg={emptyMessage} />}
       </div>
     </div>
   );

@@ -6,21 +6,27 @@ import { api } from "../lib/axios";
 import dayjs from "dayjs";
 
 export function Card(task: CardProps) {
+
   async function handleToggleTask(id: string) {
     await api.patch(`/tasks/${id}/toggle`);
   }
 
   async function deleteTask(id: string) {
-    await api.delete(`/delete/${id}`).catch((err) => {
-      console.log(err);
-    });
+    await api
+      .delete(`/delete/${id}`)
+      .then(() => {
+       window.alert("Tarefa deletada com sucesso")
+      })
+      .catch(() => {
+        window.alert("Erro ao deltera tarefa.")
+      });
   }
 
   const date = dayjs(task.task.deadline);
   const taskDate = date.format("DD/MM/YYYY");
 
   return (
-    <div className="card mb-8">
+    <div className={"card mb-8 text-gray-800 " + task.color}>
       <Checkbox.Root
         className="flex items-center gap-8 focus:outline-none"
         id="c1"
@@ -41,13 +47,14 @@ export function Card(task: CardProps) {
 
       {!task.isTodayTask && (
         <div className="flex items-center gap-8">
-          <p className="text-2xl">{taskDate}</p>
+          <p className="text-2xl tracking-wider">{taskDate}</p>
           <button
             onClick={() => deleteTask(task.task.id)}
             type="button"
             className="cursor-pointer"
+            title="Excluir Tarefa"
           >
-            <Trash size={30} color="#1565C0" />
+            {!task.isCompleted && <Trash  size={30} weight="fill" color="#263238" />}
           </button>
         </div>
       )}

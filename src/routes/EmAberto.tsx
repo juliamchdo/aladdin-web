@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import { api } from "../lib/axios";
 import { Task } from "../types/task";
 import { Card } from "../components/Card";
+import { EmptyTask } from "../components/EmptyTask";
 
 export function EmAberto() {
   const [openTask, setOpenTask] = useState<Task[]>([]);
 
   useEffect(() => {
-    api.get("open").then((response) => {
-      setOpenTask(response.data);
-    });
-  }, []);
+    api
+      .get("open")
+      .then((response) => {
+        setOpenTask(response.data);
+      })
+  }, [openTask]);
 
   return (
     <div className="flex justify-center items-center">
@@ -19,13 +22,19 @@ export function EmAberto() {
           <div>
             <h2 className="card-title">Tarefas em aberto</h2>
             {openTask.map((task) => {
-              return <Card task={task} key={task.id} isTodayTask={false} isCompleted={false}/>;
+              return (
+                <Card
+                  task={task}
+                  key={task.id}
+                  isTodayTask={false}
+                  isCompleted={false}
+                  color="bg-open"
+                />
+              );
             })}
           </div>
         )}
-        {openTask.length === 0 && (
-          <h2 className="card-title">Não há tarefas em aberto</h2>
-        )}
+        {openTask.length === 0 && <EmptyTask msg="Não há tarefas em aberto" />}
       </div>
     </div>
   );

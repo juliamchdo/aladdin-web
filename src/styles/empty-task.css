@@ -1,0 +1,24 @@
+.empty-card {
+  width: 60rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #e1f5fe;
+
+  font-size: 1.8rem;
+  color: #37474f;
+}
+
+@media screen and (max-width: 480px) {
+  .empty-card {
+    width: 30rem;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .empty-card {
+    width: 40rem;
+  }
+}

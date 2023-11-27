@@ -4,11 +4,15 @@ import { api } from "../lib/axios";
 import { isEmpty } from "../utils/EmptyNullUndefined";
 import "../styles/new-task.css";
 import * as Label from "@radix-ui/react-label";
-
+import { AlertNotification } from "./AlertNotification";
 
 export function NewTask() {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
+
+  const [taskCreated, setTaskCreated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleTask = (e: { target: { value: SetStateAction<string> } }) => {
     setTask(e.target.value);
@@ -29,13 +33,23 @@ export function NewTask() {
           deadline: date,
         })
         .then(() => {
-          window.alert("Tarefa cadastrada com sucesso!");
+          setTaskCreated(true);
+          setShowAlert(true);
+          setMessage("Tarefa criada com sucesso!")
+        })
+        .catch(() => {
+          setTaskCreated(false);
+          setShowAlert(true);
+          setMessage("Erro ao criar tarefa. Tentar novamente mais tarde.")
         });
     }
   }
 
   return (
     <form className="form">
+      <div className="text-center w-screen">
+        <h2>Cadastre uma tarefa</h2>
+      </div>
       <div className="form-group w-screen flex sm:justify-center m-10">
         <div className="form-container">
           <Label.Root className="form-label" htmlFor="task-name">
@@ -65,6 +79,7 @@ export function NewTask() {
 
         <PlusCircle size={32} color="#1565C0" onClick={createNewTask} />
       </div>
+      {showAlert && <AlertNotification message={message} error={taskCreated} />}
     </form>
   );
 }

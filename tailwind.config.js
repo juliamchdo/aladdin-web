@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        
+        'today': '#BBDEFB',
+        'open': '#D72E85',
+        'closed': '#72B42D'
       }
     },
   },

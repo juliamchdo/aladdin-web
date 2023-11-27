@@ -1,0 +1,17 @@
+.alert-container {
+    width: 60rem;
+    height: 6rem;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .alert-container {
+      width: 30rem;
+    }
+  }
+  
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    .alert-container {
+      width: 40rem;
+    }
+  }
+  
