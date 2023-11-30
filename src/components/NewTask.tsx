@@ -5,8 +5,9 @@ import { isEmpty } from "../utils/EmptyNullUndefined";
 import "../styles/new-task.css";
 import * as Label from "@radix-ui/react-label";
 import { AlertNotification } from "./AlertNotification";
+import { NewTaskProps } from "../types/new-task";
 
-export function NewTask() {
+export function NewTask({onTaskCreated} : NewTaskProps) {
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
 
@@ -35,7 +36,8 @@ export function NewTask() {
         .then(() => {
           setTaskCreated(true);
           setShowAlert(true);
-          setMessage("Tarefa criada com sucesso!")
+          setMessage("Tarefa criada com sucesso!");
+          onTaskCreated();
         })
         .catch(() => {
           setTaskCreated(false);

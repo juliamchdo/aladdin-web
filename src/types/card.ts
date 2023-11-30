@@ -6,5 +6,6 @@ export type CardProps = {
   isCompleted: boolean,
   color: string,
   taskCreated?: boolean,
-  message?: string
+  message?: string,
+  onTaskCreated: () => void
 };

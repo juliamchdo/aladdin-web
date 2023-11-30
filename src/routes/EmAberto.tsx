@@ -8,12 +8,14 @@ export function EmAberto() {
   const [openTask, setOpenTask] = useState<Task[]>([]);
 
   useEffect(() => {
-    api
-      .get("open")
-      .then((response) => {
-        setOpenTask(response.data);
-      })
-  }, [openTask]);
+    loadTasks();
+  }, []);
+
+  const loadTasks = () => {
+    api.get("open").then((response) => {
+      setOpenTask(response.data);
+    });
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -29,6 +31,7 @@ export function EmAberto() {
                   isTodayTask={false}
                   isCompleted={false}
                   color="bg-open"
+                  onTaskCreated={loadTasks}
                 />
               );
             })}

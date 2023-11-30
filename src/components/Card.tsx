@@ -6,7 +6,6 @@ import { api } from "../lib/axios";
 import dayjs from "dayjs";
 
 export function Card(task: CardProps) {
-
   async function handleToggleTask(id: string) {
     await api.patch(`/tasks/${id}/toggle`);
   }
@@ -15,10 +14,11 @@ export function Card(task: CardProps) {
     await api
       .delete(`/delete/${id}`)
       .then(() => {
-       window.alert("Tarefa deletada com sucesso")
+        window.alert("Tarefa deletada com sucesso");
+        task.onTaskCreated();
       })
       .catch(() => {
-        window.alert("Erro ao deltera tarefa.")
+        window.alert("Erro ao deletar tarefa.");
       });
   }
 
@@ -54,7 +54,9 @@ export function Card(task: CardProps) {
             className="cursor-pointer"
             title="Excluir Tarefa"
           >
-            {!task.isCompleted && <Trash  size={30} weight="fill" color="#263238" />}
+            {!task.isCompleted && (
+              <Trash size={30} weight="fill" color="#263238" />
+            )}
           </button>
         </div>
       )}
