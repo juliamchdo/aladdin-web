@@ -26,8 +26,9 @@ export function Finalizados() {
                   key={task.id}
                   isTodayTask={false}
                   isCompleted={true}
-                  color="bg-closed"
-                />
+                  color="bg-closed" onTaskCreated={function (): void {
+                    throw new Error("Function not implemented.");
+                  } }                />
               );
             })}
           </div>
