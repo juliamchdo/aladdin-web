@@ -35,4 +35,8 @@ npm install (ou npm i)
 npm run dev
 ```
 
+### 5) Observação
+Necessário rodar o projeto https://github.com/juliamchdo/aladdin-back em paralelo (servidor)
+
+
 From **[Júlia Machado] (https://aladdin-task-manager.netlify.app/)**
