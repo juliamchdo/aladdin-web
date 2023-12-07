@@ -4,10 +4,15 @@ import * as Checkbox from "@radix-ui/react-checkbox";
 import { CardProps } from "../types/card";
 import { api } from "../lib/axios";
 import dayjs from "dayjs";
+import { useState } from "react";
 
 export function Card(task: CardProps) {
+  const [completed, setCompleted] = useState(false);
+
   async function handleToggleTask(id: string) {
     await api.patch(`/tasks/${id}/toggle`);
+
+    setCompleted(!completed);
   }
 
   async function deleteTask(id: string) {
@@ -44,6 +49,10 @@ export function Card(task: CardProps) {
           {task.task.title}
         </span>
       </Checkbox.Root>
+
+      {completed && (
+        <span className="text-2xl text-lime-800	">Tarefa completada!</span>
+      )}
 
       {!task.isTodayTask && (
         <div className="flex items-center gap-8">
