@@ -11,10 +11,14 @@ export function Card(task: CardProps) {
   const [deleted, setDeleted] = useState(false);
 
   async function handleToggleTask(id: string) {
-    await api.patch(`/tasks/${id}/toggle`);
-
-    setCompleted(!completed);
+    try {
+      await api.patch(`/tasks/${id}/toggle`, {}, { headers: { 'Content-Type': 'application/json' } });
+      setCompleted(!completed);
+    } catch (error) {
+      console.error("Erro na solicitação PATCH:", error);
+    }
   }
+  
 
   async function deleteTask(id: string) {
     await api
