@@ -2,6 +2,9 @@
 
 Projeto desenvolvido para a disciplina de Hands on Work do curso Análise e Desenvolvimento de Sistemas - UNIVALI
 
+# Preview
+![aladdin](https://github.com/juliamchdo/aladdin-web/assets/89415625/5991f8ca-fbc7-4ca1-ab68-1048d020e1c3)
+
 # Tecnologias utilizadas
 - React.js
 - Typescript
